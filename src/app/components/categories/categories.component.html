@@ -1,0 +1,17 @@
+<div class="container position-relative p-3 min-vh-100 pt-5">
+    
+    <div class="row gy-3">
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let cate of categories">
+            <div class="cate" style="height: 500px;">
+                <div class="position-relative h-75">
+                    <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <img [src]="cate.image" alt="" class="w-100 h-100">
+                </div>
+                <h2 class="h4 h-25 fw-bolder text-main">{{cate.name}}</h2>
+                
+            </div>
+        </div>
+    </div>
+</div>

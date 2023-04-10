@@ -1,0 +1,20 @@
+<div class="container position-relative p-3 min-vh-100 pt-5 mt-5">
+
+    <div class="row gy-5">
+        <div class="col-lg-2 col-md-4 col-sm-6 " *ngFor="let product of products" [routerLink]="['/prductsDetails' , product.id]">
+            <div class="product my-3 py-5" style="height: 400px;">
+                <div class="position-relative  h-75">
+                    <div class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center image-loading ">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <img [src]="product.imageCover" class="w-100 h-100" alt="">
+                </div>
+                <h2 class="h6 text-main h-25 text-center my-2">{{product.slug.split('-').slice(0,2).join(' ')}}</h2>
+                <button class="btn w-100 text-white bg-main d-block mb-5">
+                    <i class="fas fa-plus"></i>    
+                    Add 
+                </button>
+            </div>
+        </div> 
+    </div>
+</div>

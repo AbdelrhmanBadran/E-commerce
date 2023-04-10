@@ -1,0 +1,16 @@
+<div class="container pt-5 mt-5 w-50 mx-auto">
+  <div class="row">
+    <form [formGroup]="shippingForm">
+      <label for="phone"> Enter Your Details</label>
+      <input type="txet   " id="phone" placeholder="Details..." class="form-control my-3" formControlName="details">
+      <label for="details"> Enter Your Phone Number</label>
+      <input type="phone" id="details" class="form-control my-3" placeholder="phone number..." formControlName="phone">
+      <label for="city"> Enter Your City</label>
+      <input type="text" id="city" class="form-control my-3" placeholder="your city..." formControlName="city">
+      <button class="btn bg-main text-white d-block ms-auto my-2" (click)="payementForm(shippingForm)" type="submit" [disabled]="shippingForm.invalid">
+        <span *ngIf="!isLoading">Pay</span>
+        <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
+      </button>
+    </form>
+  </div>
+</div>

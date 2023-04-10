@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg bg-main-light">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand  fw-bolder">
+      <img src="assets/images/freshcart-logo.svg" alt="logo" class="w-100 fresh-logo" >
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"  *ngIf="loginConfirm">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="home" routerLinkActive="active" aria-current="page" >Home</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link " routerLink="products" routerLinkActive="active" >products</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link " routerLink="categories" routerLinkActive="active"  >categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "routerLink="brands" routerLinkActive="active"  >brands</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "routerLink="allorders" routerLinkActive="active"  >orders</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item social-icons d-flex justify-content-center align-items-center">
+          <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-tiktok"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-youtube"></i>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link " *ngIf="!loginConfirm" routerLink="login" routerLinkActive="active"  >Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "  *ngIf="!loginConfirm" routerLink="register" routerLinkActive="active" >Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "  *ngIf="loginConfirm" routerLink="wishList" routerLinkActive="active" >
+            
+            <span  class="position-relative pe-3">
+              <i class="fas fa-heart text-danger" *ngIf="!isEmptyList" ></i>
+              <i class="fas fa-heart text-secondary" *ngIf="isEmptyList"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main px-2 py-1 " *ngIf="!isLoading">
+                {{wishProductNum}}
+              </span>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main p-2" *ngIf="isLoading">
+                <i  class="fa-solid  fa-circle-notch fa-spin"></i>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="loginConfirm">
+          <a class="nav-link " routerLink="cart" routerLinkActive="active" >
+            <span  class="position-relative pe-3">
+              <i class="fas fa-cart-shopping text-primary" *ngIf="!isEmpty" ></i>
+              <i class="fas fa-cart-shopping text-secondary" *ngIf="isEmpty"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main px-2 py-1 " *ngIf="!isLoading">
+                {{numOfProducts}}
+              </span>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main p-2" *ngIf="isLoading">
+                <i  class="fa-solid  fa-circle-notch fa-spin"></i>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer" (click)="logOut()"  *ngIf="loginConfirm">SignOut</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer"  *ngIf="loginConfirm" routerLink="settings" routerLinkActive="active" >Settings</a>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>

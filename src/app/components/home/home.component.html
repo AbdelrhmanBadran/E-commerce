@@ -1,0 +1,46 @@
+
+<div class="container position-relative min-vh-100 pt-5" >
+
+    <div class="row g-0 my-3" >
+    <div class="col-md-9">
+      <div>
+        <owl-carousel-o [options]="customOptions" >
+          <ng-template carouselSlide class="h-100 position-relative">
+            <img src="assets/images/slider-image-1.jpeg" style="height: 450px;" alt="">
+            <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading" style="height: 450px;">
+              <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+          </ng-template>  
+          <ng-template carouselSlide class="h-100 position-relative">
+            <img src="assets/images/slider-image-2.jpeg" class="w-100" alt="" style="height: 450px;">
+            <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading" style="height: 450px;">
+              <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+          </ng-template>  
+          <ng-template carouselSlide class="h-100 position-relative">
+            <img src="assets/images/slider-image-3.jpeg" class="w-100" alt="" style="height: 450px;">
+            <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading" style="height: 450px;">
+              <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+          </ng-template>  
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="" style="height: 450px;">
+        <img src="assets/images/slider-2.jpeg" class="w-100 h-50" alt="">
+        <img src="assets/images/banner-4.jpeg" class="w-100 h-50" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="row my-5 position-relative">
+    <app-owl-categories></app-owl-categories>
+  </div>
+  <div class="row my-5 position-relative">
+    <app-owl-brand></app-owl-brand>
+  </div>
+	<div class="row gy-4 position-relative my-3" *ngIf="!isLoading">
+    <app-single-product></app-single-product>
+  </div>
+</div>
+

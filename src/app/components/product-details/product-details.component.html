@@ -1,0 +1,49 @@
+<div class="container p-5  position-relative min-vh-100 pt-5 mt-5">
+  <div class="loading  w-100 h-100 position-absolute d-flex  justify-content-center align-items-center" *ngIf="isLoading">
+      <div class="lds-facebook"><div></div><div></div><div></div></div>
+  </div>
+  <div class="row align-items-center" *ngIf="!isLoading">
+    <div class="col-md-4">
+      <div class="position-relative">
+        <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading" >
+          <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <owl-carousel-o [options]="customOptions" class="position-relative">
+          <ng-container *ngFor="let img of productsDetails.images" class="position-relative">
+            
+            <ng-template carouselSlide [id]="img?.id" class="position-relative">
+              
+              <img [src]="img" [alt]="productsDetails.title.split(' ').slice(0,2).join(' ')" [title]="img?.title">
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <h1 class="h2 fw-bolder">{{productsDetails?.title}} : <span></span></h1>
+      <p class="font-sm fw-bolder">{{productsDetails?.description|seeMore:40|uppercase}}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <p> <span>Quantity : </span>{{productsDetails?.quantity}} Pieces</p>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p> <span>Sold : </span>{{productsDetails?.sold}} Pieces</p>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p> <span>Price : </span>{{productsDetails?.price}} EGP</p>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p> <span>Discount : </span>{{productsDetails?.price - (productsDetails?.priceAfterDiscount !== undefined ?productsDetails?.priceAfterDiscount : productsDetails?.price) }} EGP</p>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p> <span>Price After Discount : </span>{{productsDetails?.priceAfterDiscount !== undefined ?productsDetails?.priceAfterDiscount : productsDetails?.price  }} EGP</p>
+        <p> <span><i class="fa-solid fa-star rating-color"></i></span> {{productsDetails?.ratingsAverage}} </p>
+      </div>
+      <button class="btn bg-main text-white w-100 d-block m-auto" (click)="addToCart(productId , $event)">
+        <i class="fas fa-spinner fa-spin d-none"></i>
+        <span>Add to Cart</span>
+      </button>
+    </div>
+    
+  </div>
+</div>

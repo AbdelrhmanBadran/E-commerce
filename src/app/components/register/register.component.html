@@ -1,0 +1,71 @@
+<section class="register pt-5  position-relative">
+  <div class="area position-absolute w-100 h-100 top-0 start-0" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+</div >
+
+  <div class="container  p-3 rounded-2 ">
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <div class="w-75 mx-auto py-4">
+          <h4 class="fw-bold text-white">Register Now</h4>
+          <div class="alert alert-danger" *ngIf="errorMsg.length > 0">
+            <p class="m-0">{{errorMsg}}</p>
+          </div>
+          <form  [formGroup]="registerForm" class="text-white">
+            <label for="userName">User Name :</label>
+            <input type="text" id="userName"  class="form-control mb-2" formControlName="name">
+            <div class="alert alert-danger " *ngIf="registerForm.get('name')?.errors  != null && registerForm.get('name')?.dirty">
+              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('minLength')">Name minLength is 3</p>
+              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('maxLength')">Name maxLength is 10</p>
+              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('required')">Name is required</p>
+              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('pattern')">Name must start UpperCase</p>
+            </div>
+            <label for="email">Email :</label>
+            <input type="email" id="email" class="form-control mb-2" formControlName="email">
+            <div class="alert alert-danger "  *ngIf="registerForm.get('email')?.errors != null && registerForm.get('email')?.dirty">
+              <p class="m-0" *ngIf="registerForm.get('email')?.getError('email')">Enter Valid Email</p>
+              <p class="m-0" *ngIf="registerForm.get('email')?.getError('required')" >Email is required</p>
+            </div>
+            <label for="password">Password :</label>
+            <input type="password" id="password" class="form-control mb-2" formControlName="password" >
+            <div class="alert alert-danger " *ngIf="registerForm.get('password')?.errors != null && registerForm.get('password')?.dirty">
+              <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">Enter Valid password</p>
+              <p class="m-0" *ngIf="registerForm.get('password')?.getError('pattern')">password is required</p>
+            </div>
+            <label for="rePassword">rePassword :</label>
+            <input type="password" id="rePassword" class="form-control mb-2" formControlName="rePassword" >
+            <div class="alert alert-danger " *ngIf="registerForm.get('rePassword')?.errors != null && registerForm.get('rePassword')?.dirty">
+              <p class="m-0" *ngIf="registerForm.get('rePassword')?.getError('passwordMatch')">password must be matched</p>
+            </div>
+            <label for="phone">Phone :</label>
+            <input type="tel" id="phone" class="form-control mb-2" formControlName="phone" >
+            <div class="alert alert-danger " *ngIf="registerForm.get('phone')?.errors != null && registerForm.get('phone')?.dirty ">
+              <p class="m-0" *ngIf="registerForm.get('phone')?.getError('required')" >Enter Valid phone number</p>
+              <p class="m-0" *ngIf="registerForm.get('phone')?.getError('pattern')">Phone Number is required</p>
+            </div>
+            <button class="btn bg-main text-white d-block ms-auto fw-bold" [disabled]="registerForm.invalid"  (click)="register(registerForm)">
+              <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
+              <span *ngIf="!isLoading">Register</span>
+            </button>
+          </form>
+        </div> 
+      </div>
+      <div class="col-md-5 ">
+        <div class="form-img p-3 h-100">
+          <img src="assets/images/resgister.jfif" class="w-100 h-100" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

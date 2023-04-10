@@ -1,0 +1,49 @@
+<div class="container position-relative mt-5 min-vh-100">
+    
+    <div class="row bg-main-light mt-5 gy-3 p-5" >
+        <div class="col-12 mt-2">
+            <div class="d-flex ">
+                <h1 class="fw-bolder h5 wishHeading">Number of Products in WishList : </h1>
+                <span class="h5 ms-3 text-main">{{wishCount}}</span>
+            </div>
+        </div>
+        <div class="col-12 border-bottom border-bottom-2 " *ngFor="let wishedProduct of wishedProducts">
+            <div class="row">
+                
+                    <div class="col-md-5 col-sm-12">
+                        <div class="d-flex align-items-center flex-wrap">
+                            <img [src]="wishedProduct.imageCover" width="150" class="wishImage" alt="">
+                            <div class="wishCaption">
+                                <h4 class="ms-3">{{wishedProduct.title.split(' ').slice(0,3).join(' ')}}</h4>
+                                <div class="d-flex justify-content-between px-3 my-3">
+                                    <h4 class="h6">Price : <span class="text-main">{{wishedProduct.price|currency:'EUR'}}</span></h4>
+                                    <h4 class="h6 ms-4"> <i class="fas fa-star rating-color"></i> {{wishedProduct.ratingsAverage}}</h4>
+                                </div>
+                                <div class="d-flex justify-content-between px-3 my-3 flex-wrap">
+                                    <h4 class="h6">Quantity: </h4>
+                                    <h4 class="h6 ms-4"> <span class="text-main">{{wishedProduct.quantity}}</span> Pieces</h4>
+                                </div>
+                                <button class="btn btn-outline-danger h6 px-3 ms-3 my-3  cursor-pointer " (click)="removeToWishList(wishedProduct._id , $event)">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                    <span>remove</span>
+                                </button>
+                                <button class="btn text-white  bg-main ms-2 addWishCart" (click)="addToCart(wishedProduct._id , $event)">
+                                    <i  class="fa-solid fa-circle-notch fa-spin d-none"></i>
+                                    <i class="fas fa-plus"></i>
+                                    Add TO Cart
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-12">
+                        <div class="d-flex flex-wrap" >
+                            <div class="mx-2 p-4" *ngFor="let item of wishedProduct.images.slice(0,4)">
+                                <img width="100px" [src]="'https://res.cloudinary.com/dwp0imlbj/image/upload/v1680747398/Route-Academy-products/' + item" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>

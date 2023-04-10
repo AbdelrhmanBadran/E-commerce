@@ -1,0 +1,8 @@
+.payment{
+    font-size: 15px;
+}
+
+.footer{
+    position: relative;
+    z-index: 99999999999999999999999999999;
+}

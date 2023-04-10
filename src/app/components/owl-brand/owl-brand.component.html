@@ -1,0 +1,15 @@
+<owl-carousel-o [options]="customOptions">
+
+    <ng-container *ngFor="let brand of brands">
+        <ng-template carouselSlide>
+            <div class="border border-2 position-relative">
+                <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                </div>
+                <img [src]="brand.image" [alt]="brand.name" height="200">
+            </div>
+        </ng-template>
+    </ng-container>
+
+</owl-carousel-o>
+

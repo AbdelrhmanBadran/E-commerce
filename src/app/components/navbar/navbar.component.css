@@ -1,0 +1,17 @@
+.active{
+    color: green !important;
+    font-weight: 800 !important;
+    
+}
+
+.social-icons i  , .social-icons a {
+    padding-inline:5px ;
+}
+.social-icons a{
+    padding: 5px;
+}
+
+.navbar{
+    position: relative;
+    z-index: 1111;
+}

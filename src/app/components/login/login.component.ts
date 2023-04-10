@@ -1,0 +1,48 @@
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+  constructor(private _AuthService:AuthService , private _Router:Router , private CartService:CartService){   }
+
+  isLoading:boolean = false
+  errorMsg:string = ''
+  userEmail:string = JSON.stringify(localStorage.getItem('userEmail')).slice(1,-1)
+  
+  loginForrm:FormGroup = new FormGroup({
+    email: new FormControl( this.userEmail  , [Validators.required , Validators.email]),
+    password: new FormControl(null , [Validators.pattern(/^[A-Z][a-z0-9]{3,8}$/) , Validators.required])
+  })
+
+  handleLogIn(loginForrm:FormGroup){
+    this.isLoading = true;
+    if (this.loginForrm.valid) {
+      this._AuthService.logIn(this.loginForrm.value).subscribe({
+        next: res =>
+        {
+          this.CartService.userToken.next(JSON.parse(JSON.stringify(localStorage.getItem('userToken'))))
+          
+          this._Router.navigate(['/home'])
+          this.isLoading = false
+          localStorage.setItem('userToken' , res.token)
+          localStorage.setItem('userEmail' , loginForrm.value.email)
+          this._AuthService.decode()
+          console.log(res)
+        },
+        error: err =>{
+          console.log(err);
+          
+          this.isLoading = false;
+          this.errorMsg = err.error.message
+        }     
+      })
+    }
+  }
+}

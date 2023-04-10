@@ -1,0 +1,55 @@
+<div class="section position-relative pt-5 ">
+  <div class="area position-absolute w-100 h-100 top-0 start-0" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+</div >
+
+  <div class="container pt-2">
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <div class="w-75 mx-auto text-white">
+          <h4 class="fw-bold">Login Now</h4>
+          <div class="alert alert-danger" *ngIf="errorMsg.length > 0">
+            <p class="m-0">{{errorMsg}}</p>
+          </div>
+          <form  [formGroup]="loginForrm" >
+            
+            <label for="email">Email :</label>
+            <input type="email" id="email" class="form-control mb-2" formControlName="email">
+            <div class="alert alert-danger" *ngIf="loginForrm.get('email')?.errors && loginForrm.get('email')?.dirty">
+              <p class="m-0" *ngIf="loginForrm.get('email')?.getError('email')">Enter Valid Email</p>
+              <p class="m-0" *ngIf="loginForrm.get('email')?.getError('required')">Email is required</p>
+            </div>
+            <label for="password">Password :</label>
+            <input type="password" id="password" class="form-control mb-2" formControlName="password">
+            <div class="alert alert-danger" *ngIf="loginForrm.get('password')?.errors && loginForrm.get('password')?.dirty">
+              <p class="m-0" *ngIf="loginForrm.get('password')?.getError('pattern')">Enter Valid password</p>
+              <p class="m-0" *ngIf="loginForrm.get('password')?.getError('required')">password is required</p>
+              
+            </div>
+            <button class="btn bg-main text-white d-block ms-auto fw-bold" [disabled]="loginForrm.invalid" (click)="handleLogIn(loginForrm)">
+              
+              <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
+
+              <span *ngIf="!isLoading">login</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    <div class="col-md-4">
+      <div class="form-img p-3 h-100">
+        <img src="assets/images/resgister.jfif" class="w-100 h-100" alt="">
+      </div>
+    </div>
+  </div>
+</div>

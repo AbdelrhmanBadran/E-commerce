@@ -1,0 +1,45 @@
+<div class="col-md-12 my-3">
+  <h1>Shop Popular Categories</h1>
+</div>
+<div class="col-md-12 my-3">
+  <div class="d-flex">
+    <input type="text" class="form-control w-25 mx-auto" [(ngModel)]="searchTitle" placeholder="Search By Name">
+  <input type="text" class="form-control w-25 mx-auto" [(ngModel)]="searchBrand" placeholder="Search By Brand">
+  <input type="text" class="form-control w-25 mx-auto" [(ngModel)]="searchPrice" placeholder="Search By Max. Price" >
+  <!-- <button class="btn bg-main text-white w-25 d-block mx-auto" (click)="getValue()">console</button> -->
+  </div>
+</div>
+<div class="row gy-4 my-3">
+  <div class="col-12" *ngIf="noItemTosShow">
+    <h3>NO MATCHED Data !!</h3>
+  </div>
+  <div class="col-md-2"  *ngFor="let product of products|searchPipe:searchTitle|brandSearch:searchBrand|priceSearch:(searchPrice.length == 0 ? 1000000000: searchPrice)">
+    <div class="d-flex px-2">
+      <i class="fa-regular fa-heart text-danger cursor-pointer ms-auto d-block" (click)="addToWishList(product.id ,  $event)" (click)="removeToWishList(product.id ,  $event)"></i>
+    </div>
+    <div class=" w-100 product p-2" *ngIf="!noItemTosShow">
+      <a [routerLink]="['/prductsDetails' , product.id]" >
+        <div class="position-relative">
+          <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          </div>
+          <img class="w-100" [src]="product.imageCover" alt="cover">
+        </div>
+        <div class="my-1  ">
+          <p class="card-title font-sm text-main fw-bolder">{{product.brand.name|uppercase}}</p>
+          <h2 class="h6">{{product.title.split(' ').slice(0,2).join(' ')}}</h2>
+        </div>
+        <div class="d-flex my-3 justify-content-between">
+          <p>{{product.price|currency:'EUR'}}<span></span></p>
+          <p class="text-muted"><i class="fa-solid fa-star rating-color"></i>{{product.ratingsAverage}}</p>
+        </div>
+      </a>
+      <button class="btn w-100 text-white cartBtn bg-main d-block mb-1" (click)="addToCart(product.id , $event)">
+        <i  class="fa-solid fa-circle-notch fa-spin d-none"></i>
+        <i class="fas fa-plus"></i>
+          
+        Add 
+        </button>
+    </div>
+  </div>
+</div>
