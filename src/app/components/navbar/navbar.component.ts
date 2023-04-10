@@ -53,17 +53,6 @@ export class NavbarComponent implements OnInit {
     })
     
 
-    this._CartService.getWishList().subscribe({
-      next: res=>{
-        // console.log(res);
-        
-        
-      },
-      error: err=>{
-        console.log(err);
-        
-      }
-    })
     this._CartService.numOfwishList.subscribe({
       next: x=>{
         if (x == 0) {
