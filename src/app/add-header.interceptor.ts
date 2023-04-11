@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpEventType
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, finalize, tap } from 'rxjs';
 import { ProductsService } from './services/products.service';
 
 @Injectable()
@@ -25,15 +25,12 @@ export class AddHeaderInterceptor implements HttpInterceptor {
 
     })
     
-    
-    return next.handle(modifiedReq).pipe(tap(event=>{
-      this._ProductsService.loader.next(true)
-      if (event.type == HttpEventType.Response) {
-        if (event.status == 200) {
-          this._ProductsService.loader.next(false)
-        }
-      }
-    }))
+    this._ProductsService.loader.next(true)
+    return next.handle(modifiedReq).pipe(
+      finalize(()=>{
+        this._ProductsService.loader.next(false)
+      })
+    )
     
   }
 }

@@ -29,16 +29,7 @@ export class NavbarComponent implements OnInit {
       }
     })
     
-    this._CartService.getUserCart().subscribe({
-      next:res =>{
-        // console.log(res);
-        this.isLoading = false
-      },
-      error: err =>{
-        this.isLoading = false
-        // console.log(err)
-      } 
-    })
+    
 
     this._CartService.numOfProducts.subscribe({
       next:(x)=>{

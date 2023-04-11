@@ -44,13 +44,13 @@
             <p class="text-center">count</p>
           </div>
           <div class="d-flex justify-content-around mb-3 align-items-center" >
-            <span class="btn btn-outline-danger p-2 btn-sm cursor-pointer" (click)="upadteItem(product?.product._id , product.count - 1 , spinner , countNumber)">-</span>
-            <span class="text-success" #countNumber>{{product.count}}</span>
-            <i  class="fa-solid fa-circle-notch fa-spin d-none" #spinner ></i>
-            <span class="btn btn-outline-success p-2 btn-sm cursor-pointer" (click)="upadteItem(product?.product._id , product.count + 1 ,  spinner , countNumber)">+</span>
+            <button class="border border-1 border-danger  p-2  cursor-pointer" (click)="upadteItem(product?.product._id , product.count - 1); product.count = product.count - 1">-</button>
+            <span class="text-success" >{{product.count }}</span>
+            <i  class="fa-solid fa-circle-notch fa-spin d-none"  ></i>
+            <button class="border border-1 border-success  p-2  cursor-pointer" (click)="upadteItem(product?.product._id , product.count + 1 ); product.count = product.count + 1">+</button>
           </div>
           
-          <button class="btn w-100 text-white cartBtn bg-main d-block mb-1" (click)="removeCartItem(product?.product._id , $event)">
+          <button class="btn w-100 text-white cartBtn bg-main d-block mb-1" (click)="removeCartItem(product?.product._id)">
             <i  class="fa-solid fa-circle-notch fa-spin d-none" ></i>
             <i class="fa-solid fa-minus"></i>   
             Remove 
@@ -65,7 +65,7 @@
         <h5 class="h4 fw-bolder">Shop Cart</h5>
         <div class="d-flex justify-content-between">
           <h6 class="h5 text-main">Total User Cart Price : <span class="text-danger">{{data?.totalCartPrice|currency:'EUR'}}</span></h6>
-          <button class="btn btn-danger d-block  text-white" (click)="clearCartItems()">
+          <button class="btn btn-danger d-block  text-white" (click)="clearCartItems() ; this.products = []">
             <i  class="fa-solid fa-circle-notch fa-spin" *ngIf="clear" ></i>
             <span *ngIf="!clear" class="clear-cart">Clear Cart</span>
           </button>

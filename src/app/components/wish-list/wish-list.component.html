@@ -1,5 +1,7 @@
 <div class="container position-relative mt-5 min-vh-100">
-    
+    <div class="loading start-0 w-100 vh-100 position-fixed d-flex justify-content-center align-items-center" *ngIf="isLoading">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    </div>
     <div class="row bg-main-light mt-5 gy-3 p-5" >
         <div class="col-12 mt-2">
             <div class="d-flex ">
@@ -23,10 +25,10 @@
                                     <h4 class="h6">Quantity: </h4>
                                     <h4 class="h6 ms-4"> <span class="text-main">{{wishedProduct.quantity}}</span> Pieces</h4>
                                 </div>
-                                <button class="btn btn-outline-danger h6 px-3 ms-3 my-3  cursor-pointer " (click)="removeToWishList(wishedProduct._id , $event)">
+                                <span class="mx-2 text-danger cursor-pointer " (click)="removeToWishList(wishedProduct._id ); wishCount = wishCount - 1">
                                     <i class="fa-regular fa-trash-can"></i>
                                     <span>remove</span>
-                                </button>
+                                </span>
                                 <button class="btn text-white  bg-main ms-2 addWishCart" (click)="addToCart(wishedProduct._id , $event)">
                                     <i  class="fa-solid fa-circle-notch fa-spin d-none"></i>
                                     <i class="fas fa-plus"></i>

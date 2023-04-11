@@ -20,23 +20,13 @@ export class CartService {
         this.headers = x 
         // console.log(this.headers);
         this.getUserCart().subscribe({
-          next: res=>{
-            this.numOfProducts.next(res.numOfCartItems)
-          },
-          error :err=> {
-            this.numOfProducts.next(0)
-            // console.log(err)            
-          }
-
+          next:res => this.numOfProducts.next(res.numOfCartItems)
+          
         })
         this.getWishList().subscribe({
-          next: res=>{
-            this.numOfwishList.next(res.count)
-          },
-          error :err=> {
-            this.numOfwishList.next(0)
-            // console.log(err)            
-          }})
+          next:res => this.numOfwishList.next(res.count)
+          
+        })
       }
     })
 

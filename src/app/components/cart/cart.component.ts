@@ -17,8 +17,9 @@ export class CartComponent implements OnInit{
   data:any;
   cartBtnLoading:boolean = false;
   updateCountLoading:boolean = false;
-  cartOwner :string = ''
   
+  counter:any;
+  remove:any;
   ngOnInit(): void {
     this._CartService.getUserCart().subscribe({
       next:res =>{
@@ -27,10 +28,6 @@ export class CartComponent implements OnInit{
         this.products = res.data.products
         this.data = res.data
         this.numOfItem = res.numOfCartItems
-        this.cartOwner = res.data.cartOwner
-        console.log(this.cartOwner);
-        
-        localStorage.setItem('cartOwner' , this.cartOwner)
       },
       error: err =>{
         this.isLoading = false
@@ -39,48 +36,59 @@ export class CartComponent implements OnInit{
     })
   }
 
-  removeCartItem(id:string , $event:any){
+  removeCartItem(id:string ){
 
-    $event.target.children[0].classList.remove('d-none')
-    $event.target.children[1].classList.add('d-none')
+    // $event.target.children[0].classList.remove('d-none')
+    // $event.target.children[1].classList.add('d-none')
 
-    console.log(id);
+  console.log(this.products);
+  this.products = this.products.filter(pro=> (pro.product._id != id))
+
     this.cartBtnLoading = true
-    this._CartService.removeCartItem(id).subscribe({
-      next: res =>{
-        console.log(res);
-        this.products = res.data.products
-        this.data = res.data
-        this.numOfItem = res.numOfCartItems
-        this._CartService.numOfProducts.next(res.numOfCartItems)
-        this.cartBtnLoading = false
-        $event.target.children[0].classList.add('d-none')
-        $event.target.children[1].classList.remove('d-none')
-      },
-      error:err=>{
-        console.log(err);
-        this.cartBtnLoading = false
-        $event.target.children[0].classList.add('d-none')
-        $event.target.children[1].classList.remove('d-none')
-      }
-    })
+    clearTimeout(this.remove)
+    this.remove = setTimeout(() => {
+      this._CartService.removeCartItem(id).subscribe({
+        next: res =>{
+          console.log(res);
+          this.products = res.data.products
+          this.data = res.data
+          this.numOfItem = res.numOfCartItems
+          this._CartService.numOfProducts.next(res.numOfCartItems)
+          this.cartBtnLoading = false
+          // $event.target.children[0].classList.add('d-none')
+          // $event.target.children[1].classList.remove('d-none')
+        },
+        error:err=>{
+          console.log(err);
+          this.cartBtnLoading = false
+          // $event.target.children[0].classList.add('d-none')
+          // $event.target.children[1].classList.remove('d-none')
+        }
+      })
+    }, 500);
   }
-  
 
-  upadteItem(id:string , count:number , spinner:any , countNumber:any){
-    console.log(spinner);
-    spinner.classList.remove('d-none')
-    countNumber.classList.add('d-none')
-    this.updateCountLoading = true
-    this._CartService.UpdateItemQ(id,count).subscribe({
-      next: res=>{
-        console.log(res);
-        this.products = res.data.products
-        this.updateCountLoading = false
-        this.data = res.data
-        
-      }
-    })
+
+  upadteItem(id:string , count:number ){
+    
+    if(count ==0){
+      this.removeCartItem(id)
+    }else{
+      clearTimeout(this.counter)
+      this.counter = setTimeout(() => {
+        this._CartService.UpdateItemQ(id,count).subscribe({
+          next: res=>{
+            console.log(res);
+            this.products = res.data.products
+            this.updateCountLoading = false
+            this.data = res.data
+            
+          }
+        })
+    
+      }, 500);  
+    
+    }
   }
 
   

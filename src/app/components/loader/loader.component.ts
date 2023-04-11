@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -7,17 +8,11 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./loader.component.css']
 })
 export class LoaderComponent implements OnInit{
-  loader:any;
-
+  
   constructor(private _ProductsService:ProductsService){ }
-
+  loader:Subject<boolean> = this._ProductsService.loader
   ngOnInit(): void {
-    this._ProductsService.loader.subscribe({
-      next:x=>{
-        this.loader = x
-        console.log(this.loader);
-        
-      }
-    })
+    
+  
   }
 }

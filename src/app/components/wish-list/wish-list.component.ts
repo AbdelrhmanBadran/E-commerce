@@ -12,42 +12,50 @@ export class WishListComponent implements OnInit {
   wishedProducts:any[] = []
   wishCount:number = 0
   cartLoading:boolean = false
+  isLoading:boolean = true
+  wishTimeOut:any
   ngOnInit(): void {
     this._CartService.getWishList().subscribe({
       next: res=>{
         console.log(res);
         this.wishCount = res.count
         this.wishedProducts = res.data
-        
+        this.isLoading = false
       },
       error: err=>{
         console.log(err);
-        
+        this.isLoading = false
       }
     })
   }
 
-  removeToWishList(id:string , event:any )
+  removeToWishList(id:string)
   {
-    event.target.parentElement.classList.add('disabled') 
-    event.target.parentElement.innerHTML = `<i class="fa-regular fa-circle-check"></i>`
+  
+    console.log(this.wishedProducts);
+    // console.log(id);
+    this.wishedProducts = this.wishedProducts.filter(wish => wish.id !== id)
+    console.log(this.wishedProducts);
+    
+    this._CartService.numOfwishList.next(this.wishCount - 1)
+    clearTimeout(this.wishTimeOut)
 
-    // event.target.parentElement.classList.add('disabled')
-
+    this.wishTimeOut = setTimeout(() => {
       this._CartService.removeWishList(id).subscribe({
         next:res => {
           console.log(res);
           this._CartService.numOfwishList.next(res.data.length)
-          this._CartService.numOfProducts.subscribe({
+          this._CartService.numOfwishList.subscribe({
             next: x =>{
               this.wishCount = x
             }
           })
-          if (res.data.length == 0) {
-            this.wishedProducts = []
-          }
         }
       })
+    }, 500);
+    
+
+    
     
     
   }

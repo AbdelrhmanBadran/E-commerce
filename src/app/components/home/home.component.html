@@ -1,6 +1,8 @@
 
 <div class="container position-relative min-vh-100 pt-5" >
-
+  <div class="loading start-0 top-0 w-100 vh-100 position-fixed d-flex justify-content-center align-items-center" *ngIf="isLoading">
+    <div class="lds-facebook"><div></div><div></div><div></div></div>
+</div>
     <div class="row g-0 my-3" >
     <div class="col-md-9">
       <div>
