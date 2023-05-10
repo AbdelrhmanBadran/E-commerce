@@ -38,13 +38,13 @@ export class CartComponent implements OnInit{
 
   removeCartItem(id:string ){
 
-    // $event.target.children[0].classList.remove('d-none')
-    // $event.target.children[1].classList.add('d-none')
-
+  
   console.log(this.products);
   this.products = this.products.filter(pro=> (pro.product._id != id))
 
     this.cartBtnLoading = true
+
+
     clearTimeout(this.remove)
     this.remove = setTimeout(() => {
       this._CartService.removeCartItem(id).subscribe({
@@ -55,14 +55,10 @@ export class CartComponent implements OnInit{
           this.numOfItem = res.numOfCartItems
           this._CartService.numOfProducts.next(res.numOfCartItems)
           this.cartBtnLoading = false
-          // $event.target.children[0].classList.add('d-none')
-          // $event.target.children[1].classList.remove('d-none')
         },
         error:err=>{
           console.log(err);
           this.cartBtnLoading = false
-          // $event.target.children[0].classList.add('d-none')
-          // $event.target.children[1].classList.remove('d-none')
         }
       })
     }, 500);
@@ -93,6 +89,7 @@ export class CartComponent implements OnInit{
 
   
   clear:boolean =false
+  
   clearCartItems(){
     this.clear = true
     this._CartService.clearCartItems().subscribe(

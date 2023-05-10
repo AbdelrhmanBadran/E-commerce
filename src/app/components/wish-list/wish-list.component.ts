@@ -45,19 +45,11 @@ export class WishListComponent implements OnInit {
         next:res => {
           console.log(res);
           this._CartService.numOfwishList.next(res.data.length)
-          this._CartService.numOfwishList.subscribe({
-            next: x =>{
-              this.wishCount = x
-            }
-          })
+          
         }
       })
     }, 500);
-    
 
-    
-    
-    
   }
 
   addToCart(id:string , $event:any){ 

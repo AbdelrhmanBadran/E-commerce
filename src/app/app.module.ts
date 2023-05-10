@@ -32,8 +32,8 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { LoaderComponent } from './components/loader/loader.component';
-BrowserModule
- 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +60,7 @@ BrowserModule
     CheckOutComponent,
     AllordersComponent,
     WishListComponent,
-    LoaderComponent, 
+    LoaderComponent,
   ],
   imports: [
     FormsModule,
@@ -71,8 +71,8 @@ BrowserModule
     ReactiveFormsModule,
     CarouselModule,
     BrowserAnimationsModule,
-    
-    
+
+
   ],
   providers: [{
     provide : HTTP_INTERCEPTORS,

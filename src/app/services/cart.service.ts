@@ -64,7 +64,7 @@ export class CartService {
     return this._HttpClient.put(`https://route-ecommerce.onrender.com/api/v1/cart/${id}`, {count:count} )
   }
 
-  onlinePayement(cartId:string , shippingAddress:any):Observable<any>
+  onlinePayement(cartId:string , shippingAddress:any , cartOwner:string):Observable<any>
   {
     return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}/?url=http://localhost:4200` , 
     {
@@ -74,7 +74,7 @@ export class CartService {
 
   addWishList(productId:string):Observable<any>
   {
-    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/wishlist` ,{productId : productId}  )
+    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/wishlist` , {productId : productId}  )
   }
 
   removeWishList(productId:string):Observable<any>

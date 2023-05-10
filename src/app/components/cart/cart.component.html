@@ -70,7 +70,7 @@
             <span *ngIf="!clear" class="clear-cart">Clear Cart</span>
           </button>
         </div>
-        <button class="btn bg-main text-white d-flex align-items-center justify-content-center" [routerLink]="['/checkout', data._id]"><span>Online Payment</span> <img src="assets/images/Visa_Inc._logo.svg"  height="25" width="25" class="ms-2" alt=""></button>
+        <button class="btn bg-main text-white d-flex align-items-center justify-content-center" [routerLink]="['/checkout', data._id , data.cartOwner]"><span>Online Payment</span> <img src="assets/images/Visa_Inc._logo.svg"  height="25" width="25" class="ms-2" alt=""></button>
       </div>
     </div>
     
@@ -78,4 +78,3 @@
 </div>
 
 
-<!-- ?[routerLink]="['checkout/:id', data._id]" -->

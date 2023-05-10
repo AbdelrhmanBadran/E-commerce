@@ -25,6 +25,7 @@ export class AuthService {
     let decoded = jwtDecode(incoded)
     this.userData.next(decoded)
   }
+  
   logOut(){
     localStorage.removeItem('userToken');
     this.userData.next(null)

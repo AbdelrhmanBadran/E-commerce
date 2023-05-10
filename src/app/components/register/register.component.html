@@ -29,7 +29,6 @@
               <p class="m-0"  *ngIf="registerForm.get('name')?.getError('minLength')">Name minLength is 3</p>
               <p class="m-0"  *ngIf="registerForm.get('name')?.getError('maxLength')">Name maxLength is 10</p>
               <p class="m-0"  *ngIf="registerForm.get('name')?.getError('required')">Name is required</p>
-              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('pattern')">Name must start UpperCase</p>
             </div>
             <label for="email">Email :</label>
             <input type="email" id="email" class="form-control mb-2" formControlName="email">
@@ -40,7 +39,7 @@
             <label for="password">Password :</label>
             <input type="password" id="password" class="form-control mb-2" formControlName="password" >
             <div class="alert alert-danger " *ngIf="registerForm.get('password')?.errors != null && registerForm.get('password')?.dirty">
-              <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">Enter Valid password</p>
+              <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">Minimum eight characters, at least one letter and one number</p>
               <p class="m-0" *ngIf="registerForm.get('password')?.getError('pattern')">password is required</p>
             </div>
             <label for="rePassword">rePassword :</label>
@@ -59,7 +58,7 @@
               <span *ngIf="!isLoading">Register</span>
             </button>
           </form>
-        </div> 
+        </div>
       </div>
       <div class="col-md-5 ">
         <div class="form-img p-3 h-100">

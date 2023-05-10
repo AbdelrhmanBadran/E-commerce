@@ -26,7 +26,7 @@ const routes: Routes = [
   {path:'brands' , canActivate:[AuthGuard], component:BrandsComponent},
   {path:'products' , canActivate:[AuthGuard], component:ProductsComponent},
   {path:'allorders' , canActivate:[AuthGuard], component:AllordersComponent},
-  {path:'checkout/:id' , canActivate:[AuthGuard], component:CheckOutComponent},
+  {path:'checkout/:id/:owner' , canActivate:[AuthGuard], component:CheckOutComponent},
   {path:'wishList' , canActivate:[AuthGuard], component:WishListComponent},
   {path:'prductsDetails/:id' , canActivate:[AuthGuard], component:ProductDetailsComponent},
   {path:'login' , component:LoginComponent},
@@ -36,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {useHash : true})],
+  imports: [RouterModule.forRoot(routes , {useHash:true ,  scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

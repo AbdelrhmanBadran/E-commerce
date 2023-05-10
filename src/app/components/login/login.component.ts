@@ -15,33 +15,33 @@ export class LoginComponent {
   isLoading:boolean = false
   errorMsg:string = ''
   userEmail:string = JSON.stringify(localStorage.getItem('userEmail')).slice(1,-1)
-  
-  loginForrm:FormGroup = new FormGroup({
+
+  loginForm:FormGroup = new FormGroup({
     email: new FormControl( this.userEmail  , [Validators.required , Validators.email]),
-    password: new FormControl(null , [Validators.pattern(/^[A-Z][a-z0-9]{3,8}$/) , Validators.required])
+    password: new FormControl(null , [Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/) , Validators.required])
   })
 
-  handleLogIn(loginForrm:FormGroup){
+  handleLogIn(loginForm:FormGroup){
     this.isLoading = true;
-    if (this.loginForrm.valid) {
-      this._AuthService.logIn(this.loginForrm.value).subscribe({
+    if (this.loginForm.valid) {
+      this._AuthService.logIn(this.loginForm.value).subscribe({
         next: res =>
         {
           this.CartService.userToken.next(JSON.parse(JSON.stringify(localStorage.getItem('userToken'))))
-          
+
           this._Router.navigate(['/home'])
           this.isLoading = false
           localStorage.setItem('userToken' , res.token)
-          localStorage.setItem('userEmail' , loginForrm.value.email)
+          localStorage.setItem('userEmail' , loginForm.value.email)
           this._AuthService.decode()
           console.log(res)
         },
         error: err =>{
           console.log(err);
-          
+
           this.isLoading = false;
           this.errorMsg = err.error.message
-        }     
+        }
       })
     }
   }

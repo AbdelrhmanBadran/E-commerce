@@ -27,10 +27,12 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     
     this._ProductsService.loader.next(true)
     return next.handle(modifiedReq).pipe(
-      finalize(()=>{
+      tap(event=>{
+      if (event.type == HttpEventType.Response) {
         this._ProductsService.loader.next(false)
+      }
       })
     )
-    
   }
 }
+d

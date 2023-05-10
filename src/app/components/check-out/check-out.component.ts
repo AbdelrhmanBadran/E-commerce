@@ -16,15 +16,17 @@ export class CheckOutComponent  {
     city : new FormControl(null , [Validators.required ])
   })
   cardId:string = '' ;
+  cardOwner:string = '' ;
   isLoading:boolean = false
   payementForm(shippingForm:FormGroup){
     this.isLoading = true
     console.log(shippingForm.get('phone'));
     this._ActivatedRoute.paramMap.subscribe(res=> this.cardId = res.get('id')||'' )
+    this._ActivatedRoute.paramMap.subscribe(res=> this.cardOwner = res.get('owner')||'' )
     console.log(this.cardId);
     if (shippingForm.valid) {
       
-      this._CartService.onlinePayement(this.cardId,shippingForm.value ).subscribe({
+      this._CartService.onlinePayement(this.cardId,shippingForm.value ,this.cardOwner).subscribe({
         next: res =>{
           console.log(res);
           location.href = res.session.url
