@@ -13,18 +13,18 @@ import { ProductsService } from './services/products.service';
 export class AddHeaderInterceptor implements HttpInterceptor {
 
   constructor(private _ProductsService:ProductsService) {}
-  
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    
-    
-    
+
+
+
 
     let modifiedReq =  request.clone({
 
       headers:request.headers.set('token' , localStorage.getItem('userToken')|| '' )
 
     })
-    
+
     this._ProductsService.loader.next(true)
     return next.handle(modifiedReq).pipe(
       tap(event=>{
@@ -35,4 +35,3 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     )
   }
 }
-d
