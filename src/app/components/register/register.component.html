@@ -39,8 +39,8 @@
             <label for="password">Password :</label>
             <input type="password" id="password" class="form-control mb-2" formControlName="password" >
             <div class="alert alert-danger " *ngIf="registerForm.get('password')?.errors != null && registerForm.get('password')?.dirty">
-              <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">Minimum eight characters, at least one letter and one number</p>
-              <p class="m-0" *ngIf="registerForm.get('password')?.getError('pattern')">password is required</p>
+              <p class="m-0" *ngIf="registerForm.get('password')?.getError('pattern')">Minimum eight characters, at least one letter and one number</p>
+              <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">password is required</p>
             </div>
             <label for="rePassword">rePassword :</label>
             <input type="password" id="rePassword" class="form-control mb-2" formControlName="rePassword" >
