@@ -26,8 +26,7 @@
             <label for="userName">User Name :</label>
             <input type="text" id="userName"  class="form-control mb-2" formControlName="name">
             <div class="alert alert-danger " *ngIf="registerForm.get('name')?.errors  != null && registerForm.get('name')?.dirty">
-              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('minLength')">Name minLength is 3</p>
-              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('maxLength')">Name maxLength is 10</p>
+              <p class="m-0"  *ngIf="registerForm.get('name')?.getError('pattern')">Name maxLength is 20 and minLength is 3</p>
               <p class="m-0"  *ngIf="registerForm.get('name')?.getError('required')">Name is required</p>
             </div>
             <label for="email">Email :</label>
