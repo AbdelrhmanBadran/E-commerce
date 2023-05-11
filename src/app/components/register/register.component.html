@@ -12,8 +12,7 @@
             <li></li>
             <li></li>
     </ul>
-</div >
-
+  </div>
   <div class="container  p-3 rounded-2 ">
     <div class="row align-items-center">
       <div class="col-md-7">
@@ -25,19 +24,19 @@
           <form  [formGroup]="registerForm" class="text-white">
             <label for="userName">User Name :</label>
             <input type="text" id="userName"  class="form-control mb-2" formControlName="name">
-            <div class="alert alert-danger " *ngIf="registerForm.get('name')?.errors != null && registerForm.get('name')?.dirty">
+            <div class="alert alert-danger " *ngIf="registerForm.get('name')?.errors !== null && registerForm.get('name')?.dirty">
               <p class="m-0"  *ngIf="registerForm.get('name')?.getError('required')">Name is required</p>
               <p class="m-0" *ngIf="registerForm.get('name')?.getError('pattern')">Name maxLength is 20 and minLength is 3</p>
             </div>
             <label for="email">Email :</label>
             <input type="email" id="email" class="form-control mb-2" formControlName="email">
-            <div class="alert alert-danger "  *ngIf="registerForm.get('email')?.errors != null && registerForm.get('email')?.dirty">
+            <div class="alert alert-danger "  *ngIf="registerForm.get('email')?.errors !== null && registerForm.get('email')?.dirty">
               <p class="m-0" *ngIf="registerForm.get('email')?.getError('email')">Enter Valid Email</p>
               <p class="m-0" *ngIf="registerForm.get('email')?.getError('required')" >Email is required</p>
             </div>
             <label for="password">Password :</label>
             <input type="password" id="password" class="form-control mb-2" formControlName="password" >
-            <div class="alert alert-danger " *ngIf="registerForm.get('password')?.errors != null && registerForm.get('password')?.dirty">
+            <div class="alert alert-danger " *ngIf="registerForm.get('password')?.errors !== null && registerForm.get('password')?.dirty">
               <p class="m-0" *ngIf="registerForm.get('password')?.getError('pattern')">Minimum eight characters, at least one letter and one number</p>
               <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">password is required</p>
             </div>
@@ -48,7 +47,7 @@
             </div>
             <label for="phone">Phone :</label>
             <input type="tel" id="phone" class="form-control mb-2" formControlName="phone" >
-            <div class="alert alert-danger " *ngIf="registerForm.get('phone')?.errors != null && registerForm.get('phone')?.dirty ">
+            <div class="alert alert-danger " *ngIf="registerForm.get('phone')?.errors !== null && registerForm.get('phone')?.dirty ">
               <p class="m-0" *ngIf="registerForm.get('phone')?.getError('required')" >Enter Valid phone number</p>
               <p class="m-0" *ngIf="registerForm.get('phone')?.getError('pattern')">Phone Number is required</p>
             </div>
