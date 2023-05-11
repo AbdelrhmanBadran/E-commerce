@@ -74,11 +74,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 
 
   ],
-  providers: [{
-    provide : HTTP_INTERCEPTORS,
-    useClass: AddHeaderInterceptor,
-    multi: true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
