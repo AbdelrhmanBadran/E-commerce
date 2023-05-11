@@ -14,18 +14,21 @@ export class AuthService {
   userData:any = new BehaviorSubject(null);
   userEmail : any = ''
   constructor(private _HttpClient:HttpClient , private _Router:Router) {
-    
-    if (localStorage.getItem('userToken') !== null) {
-      this.decode()
-    }    
+
+    this.decode()
+
   }
-  
+
   decode(){
-    let incoded  = JSON.stringify(localStorage.getItem('userToken'))
-    let decoded = jwtDecode(incoded)
-    this.userData.next(decoded)
+    let incoded  = localStorage.getItem('userToken')
+
+    if (incoded !== null) {
+      let decoded = jwtDecode(incoded)
+      this.userData.next(decoded)
+      this._Router.navigate(['/home'])
+    }
   }
-  
+
   logOut(){
     localStorage.removeItem('userToken');
     this.userData.next(null)
@@ -42,5 +45,5 @@ export class AuthService {
     return this._HttpClient.post('https://route-ecommerce.onrender.com/api/v1/auth/signin' , userData)
   }
 
-  
+
 }

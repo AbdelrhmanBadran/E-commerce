@@ -30,17 +30,17 @@
               <p class="m-0" *ngIf="loginForm.get('email')?.getError('required')">Email is required</p>
             </div>
             <label for="password">Password :</label>
-            <input type="password" id="password" class="form-control mb-2" formControlName="password">
+            <input type="password" id="password" class="form-control mb-2" formControlName="password" autocomplete>
             <div class="alert alert-danger" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.dirty">
               <p class="m-0" *ngIf="loginForm.get('password')?.getError('pattern')">Minimum eight characters, at least one letter and one number</p>
               <p class="m-0" *ngIf="loginForm.get('password')?.getError('required')">password is required</p>
 
             </div>
-            <button class="btn bg-main text-white d-block ms-auto fw-bold" [disabled]="loginForm.invalid" (click)="handleLogIn(loginForm)">
+            <button class="btn bg-main text-white d-block ms-auto fw-bold"  (click)="handleLogIn(loginForm)">
 
               <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
 
-              <span *ngIf="!isLoading">login</span>
+              <span>login</span>
             </button>
           </form>
         </div>

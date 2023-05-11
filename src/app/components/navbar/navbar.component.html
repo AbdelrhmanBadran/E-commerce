@@ -10,10 +10,10 @@
         <li class="nav-item">
           <a class="nav-link " routerLink="home" routerLinkActive="active" aria-current="page" >Home</a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link " routerLink="products" routerLinkActive="active" >products</a>
-        </li> 
+        </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="categories" routerLinkActive="active"  >categories</a>
         </li>
@@ -32,7 +32,7 @@
         <i class="fa-brands fa-twitter"></i>
         <i class="fa-brands fa-linkedin"></i>
         <i class="fa-brands fa-youtube"></i>
-        </li> 
+        </li>
         <li class="nav-item">
           <a class="nav-link " *ngIf="!loginConfirm" routerLink="login" routerLinkActive="active"  >Login</a>
         </li>
@@ -41,7 +41,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link "  *ngIf="loginConfirm" routerLink="wishList" routerLinkActive="active" >
-            
+
             <span  class="position-relative pe-3">
               <i class="fas fa-heart text-danger" *ngIf="!isEmptyList" ></i>
               <i class="fas fa-heart text-secondary" *ngIf="isEmptyList"></i>
@@ -71,12 +71,12 @@
         <li class="nav-item">
           <a class="nav-link cursor-pointer" (click)="logOut()"  *ngIf="loginConfirm">SignOut</a>
         </li>
-        
-        <li class="nav-item">
+
+        <!-- <li class="nav-item">
           <a class="nav-link cursor-pointer"  *ngIf="loginConfirm" routerLink="settings" routerLinkActive="active" >Settings</a>
-        </li>
-        
-        
+        </li> -->
+
+
       </ul>
     </div>
   </div>

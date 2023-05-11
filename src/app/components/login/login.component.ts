@@ -25,24 +25,22 @@ export class LoginComponent {
     this.isLoading = true;
     if (this.loginForm.valid) {
       this._AuthService.logIn(this.loginForm.value).subscribe({
-        next: res =>
-        {
-          this.CartService.userToken.next(JSON.parse(JSON.stringify(localStorage.getItem('userToken'))))
-
-          this._Router.navigate(['/home'])
-          this.isLoading = false
-          localStorage.setItem('userToken' , res.token)
-          localStorage.setItem('userEmail' , loginForm.value.email)
+        next:res=>{
+          console.log(res);
+          localStorage.setItem('userToken' , res.token )
+          this.isLoading = false;
           this._AuthService.decode()
-          console.log(res)
         },
-        error: err =>{
+        error:err=>{
           console.log(err);
-
           this.isLoading = false;
           this.errorMsg = err.error.message
+
         }
       })
     }
+
   }
 }
+
+

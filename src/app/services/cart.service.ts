@@ -10,37 +10,39 @@ export class CartService {
   numOfProducts = new BehaviorSubject(0)
   numOfwishList = new BehaviorSubject(0)
   userToken = new BehaviorSubject(null || '')
-  headers:any 
-  
-  constructor(private _HttpClient:HttpClient) { 
+  headers:any
+
+  constructor(private _HttpClient:HttpClient) {
     this.userToken.next(JSON.parse(JSON.stringify(localStorage.getItem('userToken'))))
-    
+
     this.userToken.subscribe({
-      next: (x) => {  
-        this.headers = x 
+      next: (x) => {
+        this.headers = x
         // console.log(this.headers);
         this.getUserCart().subscribe({
-          next:res => this.numOfProducts.next(res.numOfCartItems)
-          
+          next:res => this.numOfProducts.next(res.numOfCartItems),
+          error:err => console.log(err)
+
+
         })
         this.getWishList().subscribe({
           next:res => this.numOfwishList.next(res.count)
-          
+
         })
       }
     })
 
-    
+
 
   }
 
   addToCart(Id:string):Observable<any>
   {
     console.log(this.headers);
-    return this._HttpClient.post('https://route-ecommerce.onrender.com/api/v1/cart' , 
+    return this._HttpClient.post('https://route-ecommerce.onrender.com/api/v1/cart' ,
     {productId:Id}
     )
-    
+
   }
 
   getUserCart():Observable<any>
@@ -48,7 +50,7 @@ export class CartService {
 
     return this._HttpClient.get('https://route-ecommerce.onrender.com/api/v1/cart')
   }
-  
+
   removeCartItem(id:string):Observable<any>
   {
     return this._HttpClient.delete(`https://route-ecommerce.onrender.com/api/v1/cart/${id}` )
@@ -66,7 +68,7 @@ export class CartService {
 
   onlinePayement(cartId:string , shippingAddress:any , cartOwner:string):Observable<any>
   {
-    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}/?url=http://localhost:4200` , 
+    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}/?url=http://localhost:4200` ,
     {
       shippingAddress: shippingAddress
     })
