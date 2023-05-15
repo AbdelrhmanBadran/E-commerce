@@ -28,9 +28,8 @@ export class ProductsService {
   }
   getAllOrders(cartId:any):Observable<any>
   {
-    return this._HttpClient.get(`${this.baseUrl}/orders/checkout-session/${cartId}?url=http://localhost:4200`)
+    return this._HttpClient.get(`${this.baseUrl}/orders/user/${cartId}`)
   }
 
 }
 
-//  /orders/checkout-session/${cartId}?url=http://localhost:4200
