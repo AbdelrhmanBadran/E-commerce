@@ -14,11 +14,11 @@ export class HomeComponent implements OnInit {
 
   isLoading:boolean = true;
   products:any[] = []
-  
+
   ngOnInit(){
-    this._CartService.userToken.next(JSON.parse(JSON.stringify(localStorage.getItem('userToken'))));
-    
-    
+    this._CartService.userToken.next(localStorage.getItem('userToken')!);
+
+
     this._ProductsService.grtProducts().subscribe({
       next: res=> {
         this.isLoading = false;
@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
       error: err =>{
         this.isLoading = false;
       },
-      complete:()=>{        
+      complete:()=>{
       }
     })
   }
-  
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     dots: false,
     autoplay:true,
     navSpeed: 1000,
-    
+
     navText: ['', ''],
     responsive: {
       0: {
