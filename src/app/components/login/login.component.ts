@@ -29,7 +29,6 @@ export class LoginComponent {
           console.log(res);
           localStorage.setItem('userToken' , res.token )
           this.isLoading = false;
-          this._AuthService.decode()
         },
         error:err=>{
           console.log(err);
