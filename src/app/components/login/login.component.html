@@ -36,7 +36,7 @@
               <p class="m-0" *ngIf="loginForm.get('password')?.getError('required')">password is required</p>
 
             </div>
-            <button class="btn bg-main text-white d-block ms-auto fw-bold"  (click)="handleLogIn(loginForm)">
+            <button class="btn bg-main text-white d-block ms-auto fw-bold"  (click)="handleLogIn(loginForm)" [disabled]="loginForm.invalid">
 
               <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
 

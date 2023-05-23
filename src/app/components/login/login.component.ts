@@ -25,7 +25,7 @@ export class LoginComponent {
     this.isLoading = true;
     if (this.loginForm.valid) {
       this._AuthService.logIn(this.loginForm.value).subscribe({
-        next:res=>{
+        next:res=>{3
           console.log(res);
           localStorage.setItem('userToken' , res.token )
           this.isLoading = false;
