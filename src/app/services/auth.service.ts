@@ -24,7 +24,8 @@ export class AuthService {
 
     if (incoded !== null) {
       let decoded = jwtDecode(incoded)
-      this.userData.next(decoded)
+      this.userData.next(decoded)  
+      this._Router.navigate(['/login'])
     }
   }
 
