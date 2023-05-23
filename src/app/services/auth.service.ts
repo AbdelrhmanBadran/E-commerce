@@ -21,11 +21,9 @@ export class AuthService {
 
   decode(){
     let incoded  = localStorage.getItem('userToken')
-
     if (incoded !== null) {
       let decoded = jwtDecode(incoded)
       this.userData.next(decoded)
-      this._Router.navigate(['/home'])
     }
   }
 
