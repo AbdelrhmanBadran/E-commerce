@@ -35,11 +35,13 @@ export class CartService {
 
 
   }
+  baseURL :string = 'https://ecommerce.routemisr.com';
+
 
   addToCart(Id:string):Observable<any>
   {
     console.log(this.headers);
-    return this._HttpClient.post('https://route-ecommerce.onrender.com/api/v1/cart' ,
+    return this._HttpClient.post(this.baseURL + '/api/v1/cart' ,
     {productId:Id}
     )
 
@@ -48,26 +50,26 @@ export class CartService {
   getUserCart():Observable<any>
   {
 
-    return this._HttpClient.get('https://route-ecommerce.onrender.com/api/v1/cart')
+    return this._HttpClient.get(this.baseURL +'/api/v1/cart')
   }
 
   removeCartItem(id:string):Observable<any>
   {
-    return this._HttpClient.delete(`https://route-ecommerce.onrender.com/api/v1/cart/${id}` )
+    return this._HttpClient.delete(this.baseURL +`/api/v1/cart/${id}` )
   }
 
   clearCartItems():Observable<any>
   {
-    return this._HttpClient.delete(`https://route-ecommerce.onrender.com/api/v1/cart` )
+    return this._HttpClient.delete(this.baseURL +'/api/v1/cart' )
   }
 
   UpdateItemQ(id:string , count:number):Observable<any>
   {
-    return this._HttpClient.put(`https://route-ecommerce.onrender.com/api/v1/cart/${id}`, {count:count} )
+    return this._HttpClient.put(this.baseURL +`/api/v1/cart/${id}`, {count:count} )
   }
   onlinePayement(cartId:string , shippingAddress:any , cartOwner:string):Observable<any>
   {
-    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}/?url=https://e-commerce-kohl-six-88.vercel.app` ,
+    return this._HttpClient.post(this.baseURL +`/api/v1/orders/checkout-session/${cartId}/?url=https://e-commerce-kohl-six-88.vercel.app` ,
     {
       shippingAddress: shippingAddress
     })
@@ -75,16 +77,16 @@ export class CartService {
 
   addWishList(productId:string):Observable<any>
   {
-    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/wishlist` , {productId : productId}  )
+    return this._HttpClient.post(this.baseURL +'/api/v1/wishlist' , {productId : productId}  )
   }
 
   removeWishList(productId:string):Observable<any>
   {
-    return this._HttpClient.delete(`https://route-ecommerce.onrender.com/api/v1/wishlist/${productId}` )
+    return this._HttpClient.delete(this.baseURL +`/api/v1/wishlist/${productId}` )
   }
 
   getWishList():Observable<any>
   {
-    return this._HttpClient.get(`https://route-ecommerce.onrender.com/api/v1/wishlist` )
+    return this._HttpClient.get(this.baseURL +'/api/v1/wishlist' )
   }
 }
