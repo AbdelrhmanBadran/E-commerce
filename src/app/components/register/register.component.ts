@@ -42,14 +42,11 @@ export class RegisterComponent {
         next: res=> {
           if (res.message == 'success') {
             this.isLoading = false
-            console.log(res);
-
             localStorage.setItem( 'userEmail' , registerForm.value.email )
             this._Router.navigate(['/login'])
           }
         },
         error: err=> {
-          console.log(err);
           this.isLoading = false
           this.errorMsg = err.error?.message;
           if (err.error.message == 'fail') {

@@ -35,13 +35,13 @@
               <p class="m-0" *ngIf="registerForm.get('email')?.getError('required')" >Email is required</p>
             </div>
             <label for="password">Password :</label>
-            <input type="password" id="password" class="form-control mb-2" formControlName="password" >
+            <input type="password" id="password" class="form-control mb-2" autocomplete  formControlName="password" >
             <div class="alert alert-danger " *ngIf="registerForm.get('password')?.errors !== null && registerForm.get('password')?.dirty">
               <p class="m-0" *ngIf="registerForm.get('password')?.getError('pattern')">Minimum eight characters, at least one letter and one number</p>
               <p class="m-0" *ngIf="registerForm.get('password')?.getError('required')">password is required</p>
             </div>
             <label for="rePassword">rePassword :</label>
-            <input type="password" id="rePassword" class="form-control mb-2" formControlName="rePassword" >
+            <input type="password" id="rePassword" class="form-control mb-2" autocomplete  formControlName="rePassword" >
             <div class="alert alert-danger " *ngIf="registerForm.get('rePassword')?.errors != null && registerForm.get('rePassword')?.dirty">
               <p class="m-0" *ngIf="registerForm.get('rePassword')?.getError('passwordMatch')">password must be matched</p>
             </div>
@@ -52,8 +52,8 @@
               <p class="m-0" *ngIf="registerForm.get('phone')?.getError('pattern')">Phone Number is required</p>
             </div>
             <button class="btn bg-main text-white d-block ms-auto fw-bold" [disabled]="registerForm.invalid"  (click)="register(registerForm)">
-              <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
-              <span *ngIf="!isLoading">Register</span>
+              <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin me-2"></i>
+              <span >Register</span>
             </button>
           </form>
         </div>

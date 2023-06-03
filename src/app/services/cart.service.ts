@@ -7,13 +7,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class CartService {
 
-  numOfProducts = new BehaviorSubject(0)
-  numOfwishList = new BehaviorSubject(0)
-  userToken = new BehaviorSubject(null || '')
+  numOfProducts:BehaviorSubject<number> = new BehaviorSubject(0)
+  numOfwishList:BehaviorSubject<number> = new BehaviorSubject(0)
+  userToken:BehaviorSubject<any> = new BehaviorSubject(null)
   headers:any
 
   constructor(private _HttpClient:HttpClient) {
-    this.userToken.next(JSON.parse(JSON.stringify(localStorage.getItem('userToken'))))
+    this.userToken.next(localStorage.getItem('userToken'))
 
     this.userToken.subscribe({
       next: (x) => {
@@ -21,18 +21,13 @@ export class CartService {
         // console.log(this.headers);
         this.getUserCart().subscribe({
           next:res => this.numOfProducts.next(res.numOfCartItems),
-          error:err => console.log(err)
-
-
+          // error:err => console.log(err)
         })
         this.getWishList().subscribe({
           next:res => this.numOfwishList.next(res.count)
-
         })
       }
     })
-
-
 
   }
   baseURL :string = 'https://ecommerce.routemisr.com';

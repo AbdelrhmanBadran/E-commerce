@@ -10,11 +10,15 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private _AuthService:AuthService , private _Router:Router , private CartService:CartService){   }
+  constructor(private _AuthService:AuthService , private _Router:Router , private CartService:CartService){
+    console.log(this.userEmail);
+
+  }
 
   isLoading:boolean = false
   errorMsg:string = ''
-  userEmail:string = JSON.stringify(localStorage.getItem('userEmail')).slice(1,-1)
+  // userEmail:string = localStorage.getItem('userEmail')
+  userEmail =  localStorage.getItem('userEmail')
 
   loginForm:FormGroup = new FormGroup({
     email: new FormControl( this.userEmail  , [Validators.required , Validators.email]),
