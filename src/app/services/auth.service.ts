@@ -35,12 +35,12 @@ export class AuthService {
 
   register(userData:RegisterForm):Observable<any>
   {
-    return this._HttpClient.post('https://route-ecommerce.onrender.com/api/v1/auth/signup' , userData)
+    return this._HttpClient.post('https://ecommerce.routemisr.com/api/v1/auth/signup' , userData)
   }
 
   logIn(userData:LoginForm):Observable<any>
   {
-    return this._HttpClient.post('https://route-ecommerce.onrender.com/api/v1/auth/signin' , userData)
+    return this._HttpClient.post('https://ecommerce.routemisr.com/api/v1/auth/signin' , userData)
   }
 
 
