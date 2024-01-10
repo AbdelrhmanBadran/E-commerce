@@ -17,14 +17,13 @@ export class CartComponent implements OnInit{
   data:any;
   cartBtnLoading:boolean = false;
   updateCountLoading:boolean = false;
-  
+
   counter:any;
   remove:any;
   ngOnInit(): void {
     this._CartService.getUserCart().subscribe({
       next:res =>{
         this.isLoading = false
-        console.log(res)
         this.products = res.data.products
         this.data = res.data
         this.numOfItem = res.numOfCartItems
@@ -32,13 +31,13 @@ export class CartComponent implements OnInit{
       error: err =>{
         this.isLoading = false
         console.log(err)
-      } 
+      }
     })
   }
 
   removeCartItem(id:string ){
 
-  
+
   console.log(this.products);
   this.products = this.products.filter(pro=> (pro.product._id != id))
 
@@ -66,7 +65,7 @@ export class CartComponent implements OnInit{
 
 
   upadteItem(id:string , count:number ){
-    
+
     if(count ==0){
       this.removeCartItem(id)
     }else{
@@ -78,18 +77,18 @@ export class CartComponent implements OnInit{
             this.products = res.data.products
             this.updateCountLoading = false
             this.data = res.data
-            
+
           }
         })
-    
-      }, 500);  
-    
+
+      }, 500);
+
     }
   }
 
-  
+
   clear:boolean =false
-  
+
   clearCartItems(){
     this.clear = true
     this._CartService.clearCartItems().subscribe(
@@ -101,9 +100,9 @@ export class CartComponent implements OnInit{
         this.clear = false
         this._CartService.numOfProducts.next(0)
 
-      
+
     })
   }
 
-  
+
 }

@@ -6,8 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PriceSearchPipe implements PipeTransform {
 
   transform(products:any[] , maxPrice:number): any[] {
-    return products.filter(product => product.price < maxPrice);
+    if(maxPrice > 0){
+      return products.filter(product => product.price > maxPrice);
+    }else{
+      return products;
+    }
   }
-
-  
 }

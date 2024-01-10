@@ -12,7 +12,7 @@
   </div>
   <div class="row" *ngIf="numOfItem !== 0">
     <div class="col-12 my-3">
-      
+
     </div>
     <div class="col-12">
       <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -24,9 +24,9 @@
 
   <div class="row gy-4 my-3" *ngIf="numOfItem !== 0">
     <div class="col-md-2" *ngFor="let product of products" >
-      
+
       <div class=" w-100 product p-2" >
-        
+
           <div class="position-relative">
             <div class="position-absolute w-100 h-100  d-flex justify-content-center align-items-center image-loading">
               <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -34,7 +34,6 @@
             <img class="w-100" [src]="product.product.imageCover" alt="cover">
           </div>
           <div class="my-1  ">
-            <p class="card-title font-sm text-main fw-bolder">{{product.product.brand.name|uppercase}}</p>
             <h2 class="h6">{{product.product.title.split(' ').slice(0,2).join(' ')}}</h2>
           </div>
           <div class="d-flex my-1 justify-content-between">
@@ -49,14 +48,14 @@
             <i  class="fa-solid fa-circle-notch fa-spin d-none"  ></i>
             <button class="border border-1 border-success  p-2  cursor-pointer" (click)="upadteItem(product?.product._id , product.count + 1 ); product.count = product.count + 1">+</button>
           </div>
-          
+
           <button class="btn w-100 text-white cartBtn bg-main d-block mb-1" (click)="removeCartItem(product?.product._id)">
             <i  class="fa-solid fa-circle-notch fa-spin d-none" ></i>
-            <i class="fa-solid fa-minus"></i>   
-            Remove 
+            <i class="fa-solid fa-minus"></i>
+            Remove
           </button>
       </div>
-      
+
     </div>
   </div>
   <div class="row flex-wrap" *ngIf="numOfItem !== 0">
@@ -73,7 +72,7 @@
         <button class="btn bg-main text-white d-flex align-items-center justify-content-center" [routerLink]="['/checkout', data._id , data.cartOwner]"><span>Online Payment</span> <img src="assets/images/Visa_Inc._logo.svg"  height="25" width="25" class="ms-2" alt=""></button>
       </div>
     </div>
-    
+
   </div>
 </div>
 

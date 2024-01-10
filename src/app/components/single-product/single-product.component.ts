@@ -12,7 +12,7 @@ export class SingleProductComponent implements OnInit{
 
   constructor(private _ProductsService:ProductsService,
     private _CartService:CartService ){  }
-  
+
   isLoading:boolean = true;
   products:any[] = []
   cartLoading:boolean = false
@@ -20,7 +20,7 @@ export class SingleProductComponent implements OnInit{
   cartOwner:any
 
   ngOnInit(): void {
-    
+
       this._ProductsService.grtProducts().subscribe({
       next: res=> {
         this.isLoading = false;
@@ -33,14 +33,14 @@ export class SingleProductComponent implements OnInit{
           this.noItemTosShow = false;
         }
         // console.log(res.data);
-        
+
       },
       error: err =>{
         this.isLoading = false;
       },
       complete:()=>{
         // console.log('Done');
-        
+
       }
     })
   }
@@ -48,11 +48,11 @@ export class SingleProductComponent implements OnInit{
   searchTitle:string = ''
   searchBrand:string = ''
   searchPrice:any = ''
-  
-  addToCart(id:string , $event:any){ 
-    
+
+  addToCart(id:string , $event:any){
+
     // console.log($event);
-    
+
     $event.target.children[0].classList.remove('d-none')
     $event.target.children[1].classList.add('d-none')
     this.cartLoading = true;
@@ -69,7 +69,7 @@ export class SingleProductComponent implements OnInit{
         this._CartService.numOfProducts.next(res.numOfCartItems)
         this.cartOwner = res.data.cartOwner
         console.log(this.cartOwner);
-        
+
         localStorage.setItem('cartOwner' , this.cartOwner)
       },
       error : err => {
@@ -78,9 +78,9 @@ export class SingleProductComponent implements OnInit{
         $event.target.children[0].classList.add('d-none')
         $event.target.children[1].classList.remove('d-none')
       }
-      
 
-      
+
+
     })
   }
 
@@ -95,12 +95,12 @@ export class SingleProductComponent implements OnInit{
           event.target.classList.replace('fa-regular' , 'fa-solid')
           console.log(event.target);
           this._CartService.numOfwishList.next(res.data.length)
-          
+
         }
       })
 
     }
-    
+
   }
 
   removeToWishList(id:string , event:any)
@@ -114,10 +114,10 @@ export class SingleProductComponent implements OnInit{
           event.target.classList.replace('fa-solid' , 'fa-regular')
           // console.log(event.target);
           this._CartService.numOfwishList.next(res.data.length)
-          
+
         }
       })
     }
-    
+
   }
 }
